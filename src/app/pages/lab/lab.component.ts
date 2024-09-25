@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-lab',
@@ -15,7 +16,7 @@ export class LabComponent {
     'Crear el proyecto',
     'Correr el proyecto'
   ];
-  name = 'Christian';
+  name = signal('Christian');
   age = 37;
   urlImg = 'https://www.w3schools.com/howto/img_avatar.png';
   disabled = true;
@@ -24,6 +25,7 @@ export class LabComponent {
     age: 37,
     avatar: 'https://www.w3schools.com/howto/img_avatar.png'
   }
+  clics = signal(0);
 
   clickHandler() {
     alert('Hola');
@@ -32,6 +34,9 @@ export class LabComponent {
   changeITHandler(event: Event) {
     const elementInput = event.target as HTMLInputElement;
     console.log(elementInput.value);
+    const newValue = elementInput.value;
+    this.name.set(newValue);
+
   }
   changeINHandler(event: Event) {
     const elementInput = event.target as HTMLInputElement;
@@ -41,5 +46,10 @@ export class LabComponent {
     console.log('Event: ', event);
     const elementInput = event.target as HTMLInputElement;
     console.log('Value: ', elementInput.value);
+  }
+  clickCount() {
+    // Increment the count by 1.
+    this.clics.update(value => value + 1);
+
   }
 }
