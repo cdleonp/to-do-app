@@ -17,4 +17,29 @@ export class LabComponent {
   ];
   name = 'Christian';
   age = 37;
+  urlImg = 'https://www.w3schools.com/howto/img_avatar.png';
+  disabled = true;
+  person = {
+    name: 'Christian',
+    age: 37,
+    avatar: 'https://www.w3schools.com/howto/img_avatar.png'
+  }
+
+  clickHandler() {
+    alert('Hola');
+  }
+
+  changeITHandler(event: Event) {
+    const elementInput = event.target as HTMLInputElement;
+    console.log(elementInput.value);
+  }
+  changeINHandler(event: Event) {
+    const elementInput = event.target as HTMLInputElement;
+    console.log(elementInput.value);
+  }
+  keydownHandler(event: KeyboardEvent) {
+    console.log('Event: ', event);
+    const elementInput = event.target as HTMLInputElement;
+    console.log('Value: ', elementInput.value);
+  }
 }

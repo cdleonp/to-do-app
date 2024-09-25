@@ -1,17 +1,39 @@
-<h1>Mi proyecto inicial: {{ title }}</h1>
-<ul>
-  @for (task of tasks; track task) {
-    <li>
-      {{ task }}
-    </li>
-  }
-</ul>
-<ul>
-    <li *ngFor="let task of tasks">
-      {{ task }}
-    </li>
-</ul>
-<hr/>
-<h2>{{ 'Hola, '.repeat(4) }}</h2>
-<p> La suma de 3 + 3 es {{ 3 + 3 }}</p>
-<p>Hola soy {{ name }} y mi edad es {{ age }}</p>
+<div class="container">
+  <h1>Mi proyecto inicial: {{ title }}</h1>
+  <ul>
+    @for (task of tasks; track task) {
+      <li>
+        {{ task }}
+      </li>
+    }
+  </ul>
+  <ul>
+      <li *ngFor="let task of tasks">
+        {{ task }}
+      </li>
+  </ul>
+  <hr/>
+  <h1>Enlace de texto, propiedades y atributos</h1>
+  <h2>{{ 'Hola, '.repeat(4) }}</h2>
+  <p> La suma de 3 + 3 es {{ 3 + 3 }}</p>
+  <p>Hola, soy {{ name }} y mi edad es {{ age }} años</p>
+  <hr/>
+  <img [src]="urlImg" alt="">
+  <input type="text" [value]="name" (input)="changeITHandler($event)">
+  <button [disabled]="disabled">Haz clic</button>
+  <p>Nombre: {{ person.name }}</p>
+  <p>Edad: {{ person.age }} años</p>
+  <img [src]="person.avatar" alt="">
+  <hr/>
+  <h1>Eventos</h1>
+  <h2>Clic</h2>
+  <button (click)="clickHandler()">Un clic</button>
+  <br>
+  <button (dblclick)="clickHandler()">Doble clic</button>
+  <h2>Change</h2>
+  <input type="number" [value]="person.age" (input)="changeINHandler($event)">
+  <h2>Keydown</h2>
+  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <h2>Keydown con Shift + T</h2>
+  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+</div>
