@@ -16,24 +16,30 @@
   <h1>Enlace de texto, propiedades y atributos</h1>
   <h2>{{ 'Hola, '.repeat(4) }}</h2>
   <p> La suma de 3 + 3 es {{ 3 + 3 }}</p>
-  <p>Hola, soy {{ name }} y mi edad es {{ age }} años</p>
+  <p>Hola, soy {{ name() }} y mi edad es {{ age }} años</p>
   <hr/>
   <img [src]="urlImg" alt="">
-  <input type="text" [value]="name" (input)="changeITHandler($event)">
-  <button [disabled]="disabled">Haz clic</button>
+  <input type="text" [value]="name()" (input)="changeITHandler($event)">
+  <button class="boton" [disabled]="disabled">Haz clic</button>
   <p>Nombre: {{ person.name }}</p>
   <p>Edad: {{ person.age }} años</p>
   <img [src]="person.avatar" alt="">
   <hr/>
   <h1>Eventos</h1>
   <h2>Clic</h2>
-  <button (click)="clickHandler()">Un clic</button>
+  <button class="boton" (click)="clickHandler()">Un clic</button>
   <br>
-  <button (dblclick)="clickHandler()">Doble clic</button>
+  <button class="boton" (dblclick)="clickHandler()">Doble clic</button>
   <h2>Change</h2>
   <input type="number" [value]="person.age" (input)="changeINHandler($event)">
   <h2>Keydown</h2>
   <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
   <h2>Keydown con Shift + T</h2>
   <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+  <hr/>
+  <h2>Signals</h2>
+  <input type="text" [value]="name()" (input)="changeITHandler($event)">
+  <p>Nombre (con reactividad): {{ name() }}</p>
+  <button class="boton" (click)="clickCount()">Clic + 1</button>
+  <p>Clics: {{ clics() }}</p>
 </div>

@@ -1,3 +1,15 @@
 .container {
     padding: 3rem;
 }
+.boton {
+    line-height: 19px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: cornflowerblue;
+    padding: 5px;
+    border-radius: 5px;
+  
+    &:hover {
+        text-decoration: underline;
+    }
+}
