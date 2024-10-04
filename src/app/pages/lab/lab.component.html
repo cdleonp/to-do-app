@@ -21,9 +21,9 @@
   <img [src]="urlImg" alt="">
   <input type="text" [value]="name()" (input)="changeITHandler($event)">
   <button class="boton" [disabled]="disabled">Haz clic</button>
-  <p>Nombre: {{ person.name }}</p>
-  <p>Edad: {{ person.age }} años</p>
-  <img [src]="person.avatar" alt="">
+  <p>Nombre: {{ person().name }}</p>
+  <p>Edad: {{ person().age }} años</p>
+  <img [src]="person().avatar" alt="">
   <hr/>
   <h1>Eventos</h1>
   <h2>Clic</h2>
@@ -31,15 +31,24 @@
   <br>
   <button class="boton" (dblclick)="clickHandler()">Doble clic</button>
   <h2>Change</h2>
-  <input type="number" [value]="person.age" (input)="changeINHandler($event)">
+  <input type="number" [value]="person().age" (input)="changeINHandler($event)">
   <h2>Keydown</h2>
-  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <input type="text" [value]="person().name" (keydown)="keydownHandler($event)">
   <h2>Keydown con Shift + T</h2>
-  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+  <input type="text" [value]="person().name" (keydown.shift.t)="clickHandler()">
   <hr/>
   <h2>Signals</h2>
   <input type="text" [value]="name()" (input)="changeITHandler($event)">
   <p>Nombre (con reactividad): {{ name() }}</p>
   <button class="boton" (click)="clickCount()">Clic + 1</button>
   <p>Clics: {{ clics() }}</p>
+  <hr/>
+  <h2>NgSwitch</h2>
+  <input type="text" [value]="person().name" (input)="changeName($event)">
+  <div [ngSwitch]="person().name">
+    <p *ngSwitchCase="'Christian'">Soy Christian</p>
+    <p *ngSwitchCase="'David'">Soy David</p>
+    <p *ngSwitchCase="'Pepe'">Soy Pepe</p>
+    <p *ngSwitchDefault>No soy ninguno de ellos</p>
+  </div>
 </div>

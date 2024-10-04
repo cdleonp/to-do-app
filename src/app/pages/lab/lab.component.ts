@@ -20,11 +20,11 @@ export class LabComponent {
   age = 37;
   urlImg = 'https://www.w3schools.com/howto/img_avatar.png';
   disabled = true;
-  person = {
+  person = signal({
     name: 'Christian',
     age: 37,
     avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-  }
+  });
   clics = signal(0);
 
   clickHandler() {
@@ -36,7 +36,6 @@ export class LabComponent {
     console.log(elementInput.value);
     const newValue = elementInput.value;
     this.name.set(newValue);
-
   }
   changeINHandler(event: Event) {
     const elementInput = event.target as HTMLInputElement;
@@ -50,6 +49,16 @@ export class LabComponent {
   clickCount() {
     // Increment the count by 1.
     this.clics.update(value => value + 1);
-
+  }
+  changeName(event: Event) {
+    const elementInput = event.target as HTMLInputElement;
+    console.log(elementInput.value);
+    const newValue = elementInput.value;
+    this.person.update(value => {
+      return {
+        ...value,
+        name: newValue
+      }
+    });
   }
 }
