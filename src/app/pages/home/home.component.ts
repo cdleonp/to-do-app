@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { TaskFilter } from '../../models/task-filter.enum';
@@ -12,16 +12,24 @@ import { TaskFilter } from '../../models/task-filter.enum';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  tasks = signal<Task[]>([
-    {
-      id: Date.now(),
-      name: 'Instalar el Angular CLI',
-      completed: false,
-      editing: false
-    },
-  ]);
-  Filters = TaskFilter;
+  constructor() {
+    effect(() => {
+      const tasks = this.tasks();
+      console.log(tasks);
+      localStorage.setItem('TASKS', JSON.stringify(tasks));
+    })
+  }
 
+  ngOnInit() {
+    const storage = localStorage.getItem('TASKS'); //Search for TASKS in storage
+    if(storage) {
+      const tasksInStorage = JSON.parse(storage);
+      this.tasks.set(tasksInStorage); //Set initial value for tasks
+    }
+  }
+
+  tasks = signal<Task[]>([]);
+  Filters = TaskFilter;
   filter = signal<TaskFilter>(TaskFilter.all);
 
   newTaskCtrl = new FormControl('', {
@@ -54,7 +62,7 @@ export class HomeComponent {
       [TaskFilter.completed]: () => tasks.filter((task) => task.completed),
       [TaskFilter.all]: () => tasks,
     };
-    console.log('Filtered tasks: ', filterMapping[filter]());
+    // console.log('Filtered tasks: ', filterMapping[filter]());
     return filterMapping[filter]();
   });
 
