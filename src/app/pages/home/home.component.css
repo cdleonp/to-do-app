@@ -264,6 +264,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: center;
   }
   
   .todo-count {
@@ -295,10 +296,13 @@
   
   .filters li a:hover {
     border-color: #6e49fe;
+    cursor: pointer;
   }
   
   .filters li a.selected {
     border-color: #4c33b1;
+    background-color: #4c33b1;
+    color: white;
   }
   
   .clear-completed,
