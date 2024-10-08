@@ -13,3 +13,19 @@
         text-decoration: underline;
     }
 }
+
+.box {
+    background-color: red;
+    display: block;
+    height: 10px;
+}
+
+.error-message {
+    color: red;
+    opacity: 0;
+    transition: all linear 0.5s;
+}
+.error-message.show {
+    opacity: 1;
+}
+
