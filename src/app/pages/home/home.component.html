@@ -17,7 +17,7 @@
     <div class="container todoapp-wrapper">
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
-        <ul class="todo-list">
+        <ul class="todo-list" *ngIf="tasks().length > 0; else noTasks">
           <li
             *ngFor="let task of tasksByFilter(); index as i"
             (dblclick)="enableEditingMode(task.id)"
@@ -36,9 +36,15 @@
               (keydown.enter)="editTask(task.id)"/>
           </li>
         </ul>
+        <ng-template #noTasks>
+          <div class="no-tasks">
+            <p>No tasks.</p>
+            <h3>¡Create the first one and start your day!</h3>            
+          </div>
+        </ng-template>
       </section>
       <!-- This footer should be hidden by default and shown when there are todos -->
-      <footer class="footer">
+      <footer class="footer" *ngIf="tasks().length > 0">
         <!-- This should be `0 items left` by default -->
         <div *ngIf="filter() !== 'all'; else noFilter">
           <span class="todo-count"><strong>{{ tasksByFilter().length }}</strong>
