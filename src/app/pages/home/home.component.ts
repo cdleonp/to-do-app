@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, effect, signal } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
@@ -7,7 +7,7 @@ import { TaskFilter } from '../../models/task-filter.enum';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
